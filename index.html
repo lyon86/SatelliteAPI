@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>N2YO API Test</title>
-    <script src="main.js"></script>
-</head>
-<body>
-    <h1>N2YO API Test</h1>
-    <label for="satid">Enter satellite ID:</label>
-    <input type="text" id="satid">
-    <button onclick="getSatellite()">Get Satellite Data</button>
-    <div id="result"></div>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Satellite Tracker</title>
+    <style>
+      /* your CSS styles go here */
+    </style>
+  </head>
+  <body>
+    <h1>Satellite Tracker</h1>
+    <form>
+      <label for="satid">Satellite ID:</label>
+      <input type="text" id="satid" name="satid"><br>
+      <label for="lat">Latitude:</label>
+      <input type="text" id="lat" name="lat"><br>
+      <label for="lon">Longitude:</label>
+      <input type="text" id="lon" name="lon"><br>
+      <button type="button" id="submit">Submit</button>
+    </form>
+    <div id="output"></div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
