@@ -1,0 +1,19 @@
+h1 {
+    font-size: 2em;
+    text-align: center;
+}
+label {
+    font-size: 1.2em;
+}
+input[type="text"] {
+    font-size: 1.2em;
+    padding: 5px;
+}
+button {
+    font-size: 1.2em;
+    padding: 5px;
+}
+#result {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
