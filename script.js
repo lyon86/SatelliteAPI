@@ -1,28 +1,41 @@
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-const apiKey = "ZNM9HU-69UEHS-8F976T-4ZIR";
+      const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+      const apiKey = "ZNM9HU-69UEHS-8F976T-4ZIR";
+      const url = `${proxyUrl}https://api.n2yo.com/rest/v1/satellite/positions`;
 
-const submitButton = document.getElementById("submit");
-submitButton.addEventListener("click", () => {
-  const satid = document.getElementById("satid").value;
-  const lat = document.getElementById("lat").value;
-  const lon = document.getElementById("lon").value;
+      function getData() {
+        const satelliteId = document.getElementById("satelliteId").value;
+        const noradId = document.getElementById("noradId").value;
+        const latitude = document.getElementById("latitude").value;
+        const longitude = document.getElementById("longitude").value;
 
-  const apiUrl = `https://api.n2yo.com/rest/v1/satellite/positions/${satid}/${lat}/${lon}/0/1/&apiKey=${apiKey}`;
+        let urlParams = "";
+        if (noradId) {
+          urlParams = `/${noradId}/${latitude}/${longitude}/0/1/&apiKey=${apiKey}`;
+        } else {
+          urlParams = `/${satelliteId}/${latitude}/${longitude}/0/1/&apiKey=${apiKey}`;
+        }
 
-  fetch(proxyUrl + apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      const positions = data.positions;
-      let outputHtml = "<ul>";
-      positions.forEach(position => {
-        const date = new Date(position.timestamp * 1000);
-        outputHtml += `<li>At ${date}, the satellite was at latitude ${position.satlatitude} and longitude ${position.satlongitude}.</li>`;
-      });
-      outputHtml += "</ul>";
-      document.getElementById("output").innerHTML = outputHtml;
-    })
-    .catch(error => {
-      console.error(error);
-      document.getElementById("output").innerHTML = "Error fetching data.";
-    });
-});
+        fetch(url + urlParams)
+          .then(response => response.json())
+          .then(data => {
+            const satPositions = data.positions[0];
+            const satName = data.info.satname;
+            const satAzimuth = satPositions.azimuth.toFixed(2);
+            const satElevation = satPositions.elevation.toFixed(2);
+            const satLat = satPositions.satlatitude;
+            const satLon = satPositions.satlongitude;
+            const satAlt = satPositions.sataltitude;
+            const satTimestamp = new Date(satPositions.timestamp * 1000).toLocaleString();
+
+            const output = document.getElementById("output");
+            output.innerHTML = `<strong>Satellite Name:</strong> ${satName}<br>
+                                <strong>Longitude-Orbital Slot:</strong> ${satLon}&deg;<br>
+                                <strong>Latitude-GEO:</strong> ${satLat}&deg;<br>
+                                <strong>Azimuth:</strong> ${satAzimuth}&deg;<br>
+                                <strong>Elevation:</strong> ${satElevation}&deg;<br>
+                                <strong>Altitude:</strong> ${satAlt} km<br>
+                                <strong>Timestamp:</strong> ${satTimestamp}<br>
+                                <strong>Antenna Location:</strong> ${latitude}, ${longitude}`;
+          })
+          .catch(error => console.error(error));
+      }
