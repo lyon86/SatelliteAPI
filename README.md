@@ -1,12 +1,13 @@
 # SatelliteAPI
 This is the code to use the apu from N2YO
 
-Input
+# Input
 GPS location 
 Select Favortites sats or 
 Selec saved list 
 
-Output
+# Output
 AZ and EL 
-Graph of the antenna
+Gr aph of the antenna
 Graph of the att 
+Location of the antenna on the world
