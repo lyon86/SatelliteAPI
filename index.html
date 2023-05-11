@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Satellite Tracker</title>
-    <style>
-      /* your CSS styles go here */
-    </style>
+    <title>Satellite Tracker V2</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js" defer></script>
   </head>
   <body>
-    <h1>Satellite Tracker</h1>
-    <form>
-      <label for="satid">Satellite ID:</label>
-      <input type="text" id="satid" name="satid"><br>
-      <label for="lat">Latitude:</label>
-      <input type="text" id="lat" name="lat"><br>
-      <label for="lon">Longitude:</label>
-      <input type="text" id="lon" name="lon"><br>
-      <button type="button" id="submit">Submit</button>
-    </form>
-    <div id="output"></div>
-
-    <script src="script.js"></script>
+     <h1>Satellite Tracker V2</h1>
+    <p>Please click the following link to enable CORS Anywhere:</p>
+    <p><a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">https://cors-anywhere.herokuapp.com/corsdemo</a></p>
+    <br>
+<!This code is for  the antenna pointing>
+    <div>
+    <label for="satelliteId">Satellite ID:</label>
+    <select id="satelliteId">
+      <option value="25544">ISS (25544)</option>
+      <option value="44034">HS4 (44034)</option>
+      <option value="35022">Aqua (35022)</option>
+    </select>
+    <br><br>
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" value="41.702">
+    <br><br>
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" value="-76.014">
+    <br><br>
+    <label for="noradId">NORAD ID:</label>
+    <input type="text" id="noradId">
+    <br><br>
+    <button onclick="getData()">Get Data</button>
+    <br><br>
+    <p id="output"></p>
+    </div>
+<! This code will make the antenna graphs >
+    <div class="circle-container">
+	
+     <div class="outer-circle"></div>
+     <div class="inner-circle"></div>
+    </div>
+<! this code is for the Maps>
+    <div>
+    </div>
   </body>
 </html>
